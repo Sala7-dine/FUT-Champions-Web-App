@@ -7,7 +7,6 @@ module.exports = {
         'staduim-bg': "url('../assets/slide4.jpg')",
       },
 
-
     },
   },
   plugins: [],
