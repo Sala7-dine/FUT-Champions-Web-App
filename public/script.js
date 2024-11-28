@@ -169,7 +169,7 @@ position.addEventListener("change" , (e)=> {
     }else {
         champ.innerHTML = JoueurTemplate();
     }
-})
+});
 
 
 function savePlayer() {
@@ -281,13 +281,13 @@ close.addEventListener("click" ,()=> {
 
 // Afficher tout les joueur ----------------------------------------------
 
-function cardTemplate(){
+function cardTemplate(name , rating , shooting , position , photo){
 
 
-    let card = `<div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+    let card = `<div class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
+                    <img class="w-24 mt-1" src="${photo}" alt="">
+                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">${rating}</span>     <span>${name}</span>  <span class="text-[10px]">${shooting}</span>     </h1>
+                    <h3 class="font-semibold text-[10px]">${position}</h3>
 
                     <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
                     <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
@@ -302,22 +302,83 @@ let modalCards = document.getElementById("modalCards");
 let displayPlayers = document.getElementById("displayPlayers");
 let closeJ = document.getElementById("closeJ");
 
+
+
 displayPlayers.addEventListener("click" , ()=>{
     if(allPlayers.length == 0){
         alert("Aucun Joueur a afficher");
     }else{
+        cards.innerHTML = "";
+        allPlayers.forEach(card => { 
+            if(card.position === "GK"){
+                cards.innerHTML += cardTemplate(card.name , card.note , card.prise_balle , card.position , card.photo);
+            }else{
+                cards.innerHTML += cardTemplate(card.name , card.rating , card.shooting , card.position , card.photo);
+            }
+        });
+        
 
         modalCards.style.display = "flex";
     }
 });
 
-allPlayers.forEach(card => {
-    cards.innerHTML += cardTemplate();
+
+closeJ.addEventListener("click" , ()=>{
+    modalCards.style.display = "none";
 });
 
 
 
-closeJ.addEventListener("click" , ()=>{
-    modalCards.style.display = "none";
-})
+// Ajouter des joueur sur les cards -----------------------------------
 
+
+let modaPlayers = document.getElementById('modaPlayers');
+let cardsJr = document.getElementById('cardsJr');
+let closeJr = document.getElementById("closeJr");
+
+function selectedCard(card , id){
+
+    modaPlayers.style.display = "flex";
+
+    cardsJr.innerHTML = ""; 
+
+    if(id === "LW" || id === "ST" || id === "RW" ){
+        cardsJr.innerHTML = "";
+        Attaquant.forEach(attaque => {
+            cardsJr.innerHTML += cardTemplate(attaque.name , attaque.rating , attaque.shooting , attaque.position , attaque.photo);
+        });
+    }else if(id === "CAM" || id === "CM" || id === "CDM"){
+        cardsJr.innerHTML = "";
+        Centraux.forEach(centraux => {
+            cardsJr.innerHTML += cardTemplate(centraux.name , centraux.rating , centraux.shooting , centraux.position , centraux.photo);
+        });
+    }else if (id === "LB" || id === "CB" || id === "CB-2" || id==="RB"){
+        cardsJr.innerHTML = "";
+        Defeseurs.forEach(centraux => {
+            cardsJr.innerHTML += cardTemplate(centraux.name , centraux.rating , centraux.shooting , centraux.position , centraux.photo);
+        });
+    }else if(id==="GK"){
+        cardsJr.innerHTML = "";
+        Gardiens.forEach(gardien => {
+            cardsJr.innerHTML += cardTemplate(gardien.name , gardien.note , gardien.prise_balle , gardien.position , gardien.photo);
+        });
+    }
+
+    let joueurCards = document.querySelectorAll(".joueurCards");
+    
+    joueurCards.forEach(joueur => {
+        joueur.addEventListener("click" , ()=>{
+            card.innerHTML = "";
+            card.outerHTML = joueur.outerHTML;
+            console.log(id);
+        });
+    });
+
+    console.log("all cards : " , joueurCards);
+
+}
+
+
+closeJr.addEventListener("click" , () => {
+    modaPlayers.style.display = "none";
+})

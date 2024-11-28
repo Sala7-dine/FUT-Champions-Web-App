@@ -53,15 +53,27 @@
 
           </div>
 
-
         </div>
 
-        <div class="flex flex-col justify-center items-centerr w-3/6 max-md:w-auto">
+        <div class="flex flex-col justify-center items-center w-3/6 bg-[url('../assets/stadium.webp')] bg-top max-md:w-auto">
 
-            <div class="flex justify-evenly ">
+            <div class="flex justify-evenly">
 
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                <div id="LW" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>LW</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
+
+                </div>
+
+                <div id="ST" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
                    
+                    <p>ST</p>
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
                         width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
                         xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
@@ -73,112 +85,140 @@
 
                 </div>
 
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+                <div id="RW" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                    <p>RW</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                </div> 
-                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
                 </div>
+
 
 
             </div>
 
             <div class="flex justify-evenly w-8/12 m-auto max-md:w-auto max-md:m-0">
 
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between"><span class="text-[10px]">21</span><span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+                <div id="CAM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <P>CAM</P>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                </div> 
-                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                </div> 
-                
-                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
-
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
                 </div>
 
+                <div id="CM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>CM</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
+
+
+                </div>
+
+                <div id="CDM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>CDM</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
+
+
+                </div>
 
 
             </div>
 
             <div class="flex justify-evenly">                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+                <div id="LB" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>LB</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                </div> 
-                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                </div> 
-                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+                </div>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                </div> 
-                
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+                <div id="CB" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>CB</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
+
+                </div>
+
+                <div id="CB-2" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>Cb</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
+
+                </div>
+
+                <div id="RB" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>RB</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
+
+
                 </div>
 
             </div>
 
             <div class="flex justify-evenly">
 
-                <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">RW</h3>
+                <div id="GK" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                   <p>GK</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g>
+                        <path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class="">
+                        </path>
+                        <path 
+                            fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                            opacity="1" data-original="#ffffff" class="">
+                        </path></g>
+                    </svg>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
+        
                 </div>
-
-
 
             </div>
 
@@ -188,7 +228,7 @@
 
         <div class="flex justify-center items-center">
 
-            <div class="w-80 h-[25rem] bg-green-900 bg-opacity-65 mr-12 flex flex-col justify-center items-center">
+            <div class="w-80 h-[25rem] mr-12 flex flex-col justify-center items-center">
 
                 <div class="flex flex-col items-start justify-center text-white font-semibold text-xl text-start">
                     <img class="w-20 self-center" src="../assets/lionel-messi-9.png" alt="">
@@ -203,11 +243,37 @@
 
                 </div>
 
-
-
             </div>
 
 
+        </div>
+
+
+        <!-- Modal Sp Joueur -->
+
+        <div id="modaPlayers"
+        class="fixed inset-0 p-4 hidden flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.8)] overflow-auto font-[sans-serif]">
+
+        <div class="absolute top-9 right-9" id="closeJr">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-3.5 cursor-pointer shrink-0 fill-gray-400 hover:fill-red-500 " viewBox="0 0 320.591 320.591">
+            <path
+                d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
+                data-original="#000000"></path>
+            <path
+                d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
+                data-original="#000000"></path>
+            </svg>
+
+        </div>
+
+        <div id="cardsJr" class="flex flex-wrap justify-center gap-4 w-full max-w-2xl bg-green-600 bg-opacity-40 backdrop-blur-sm shadow-lg rounded-lg p-12 relative overflow-auto">
+
+
+            
+            
+        </div>
         </div>
 
 
@@ -217,12 +283,9 @@
         <div id="modalCards"
                 class="fixed inset-0 p-4 hidden flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.8)] overflow-auto font-[sans-serif]">
 
-                <div id="cards" class="flex flex-wrap justify-center gap-4 w-full max-w-2xl bg-green-600 bg-opacity-40 backdrop-blur-sm shadow-lg rounded-lg p-12 relative overflow-auto">
+                <div class="absolute top-9 right-9" id="closeJ">
 
-
-                    <div class="absolute top-9 right-9" id="closeJ">
-
-                        <svg xmlns="http://www.w3.org/2000/svg"
+                    <svg xmlns="http://www.w3.org/2000/svg"
                     class="w-3.5 cursor-pointer shrink-0 fill-gray-400 hover:fill-red-500 " viewBox="0 0 320.591 320.591">
                     <path
                         d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
@@ -232,65 +295,15 @@
                         data-original="#000000"></path>
                     </svg>
 
-                    </div>
+                </div>
 
-                    <!-- <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                        <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                        <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                        <h3 class="font-semibold text-[10px]">RW</h3>
-
-                        <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                        <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                    </div>
-
-                    <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                        <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                        <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                        <h3 class="font-semibold text-[10px]">RW</h3>
-
-                        <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                        <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                    </div>
+                <div id="cards" class="flex flex-wrap justify-center gap-4 w-full max-w-2xl bg-green-600 bg-opacity-40 backdrop-blur-sm shadow-lg rounded-lg p-12 relative overflow-auto">
 
 
-                    <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                        <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                        <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                        <h3 class="font-semibold text-[10px]">RW</h3>
-
-                        <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                        <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                    </div>
-
-
-                    <div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                        <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                        <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                        <h3 class="font-semibold text-[10px]">RW</h3>
-
-                        <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                        <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                    </div><div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                        <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                        <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                        <h3 class="font-semibold text-[10px]">RW</h3>
-
-                        <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                        <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                    </div><div class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                        <img class="w-24 mt-1" src="../assets/lionel-messi-9.png" alt="">
-                        <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">21</span>     <span>Messi</span>  <span class="text-[10px]">35</span>     </h1>
-                        <h3 class="font-semibold text-[10px]">RW</h3>
-
-                        <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                        <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
-                    </div> -->
                     
-                    
-                
                     
                 </div>
-            </div>
+        </div>
 
         <!-- Ajouter Joueur --> 
 
@@ -315,7 +328,7 @@
 
                 <form class="flex flex-col gap-4" id="playerForm">
 
-                    <div>
+                    <div>  
                         <label class="text-gray-800 text-sm mb-2 block">Nom</label>
                         <input id="name" type="text" placeholder="Saisissez le nom du joueur..."
                             class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
