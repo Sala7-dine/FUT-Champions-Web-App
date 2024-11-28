@@ -289,7 +289,7 @@ function cardTemplate(name , rating , shooting , position , photo){
                     <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">${rating}</span>     <span>${name}</span>  <span class="text-[10px]">${shooting}</span>     </h1>
                     <h3 class="font-semibold text-[10px]">${position}</h3>
 
-                    <div class="absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
+                    <div class="delete-player absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
                     <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
                 </div>`
 
@@ -302,83 +302,98 @@ let modalCards = document.getElementById("modalCards");
 let displayPlayers = document.getElementById("displayPlayers");
 let closeJ = document.getElementById("closeJ");
 
-
-
-displayPlayers.addEventListener("click" , ()=>{
-    if(allPlayers.length == 0){
-        alert("Aucun Joueur a afficher");
-    }else{
-        cards.innerHTML = "";
-        allPlayers.forEach(card => { 
-            if(card.position === "GK"){
-                cards.innerHTML += cardTemplate(card.name , card.note , card.prise_balle , card.position , card.photo);
-            }else{
-                cards.innerHTML += cardTemplate(card.name , card.rating , card.shooting , card.position , card.photo);
-            }
-        });
-        
-
-        modalCards.style.display = "flex";
-    }
-});
-
-
-closeJ.addEventListener("click" , ()=>{
-    modalCards.style.display = "none";
-});
-
-
-
 // Ajouter des joueur sur les cards -----------------------------------
-
 
 let modaPlayers = document.getElementById('modaPlayers');
 let cardsJr = document.getElementById('cardsJr');
 let closeJr = document.getElementById("closeJr");
 
-function selectedCard(card , id){
-
+function selectedCard(card, id) {
     modaPlayers.style.display = "flex";
+    cardsJr.innerHTML = "";
 
-    cardsJr.innerHTML = ""; 
-
-    if(id === "LW" || id === "ST" || id === "RW" ){
-        cardsJr.innerHTML = "";
-        Attaquant.forEach(attaque => {
-            cardsJr.innerHTML += cardTemplate(attaque.name , attaque.rating , attaque.shooting , attaque.position , attaque.photo);
-        });
-    }else if(id === "CAM" || id === "CM" || id === "CDM"){
-        cardsJr.innerHTML = "";
-        Centraux.forEach(centraux => {
-            cardsJr.innerHTML += cardTemplate(centraux.name , centraux.rating , centraux.shooting , centraux.position , centraux.photo);
-        });
-    }else if (id === "LB" || id === "CB" || id === "CB-2" || id==="RB"){
-        cardsJr.innerHTML = "";
-        Defeseurs.forEach(centraux => {
-            cardsJr.innerHTML += cardTemplate(centraux.name , centraux.rating , centraux.shooting , centraux.position , centraux.photo);
-        });
-    }else if(id==="GK"){
-        cardsJr.innerHTML = "";
-        Gardiens.forEach(gardien => {
-            cardsJr.innerHTML += cardTemplate(gardien.name , gardien.note , gardien.prise_balle , gardien.position , gardien.photo);
-        });
+    let players = [];
+    
+    if (id === "LW" || id === "ST" || id === "RW") {
+        players = Attaquant.filter(player => player.position === id);
+    } else if (id === "CAM" || id === "CM" || id === "CDM") {
+        players = Centraux.filter(player => player.position === id);
+    } else if (id === "LB" || id === "CB" || id === "CB-2" || id === "RB") {
+        players = Defeseurs.filter(player => player.position === id);
+    } else if (id === "GK") {
+        players = Gardiens;
     }
+
+    if (players.length === 0) {
+        cardsJr.innerHTML = `
+            <div class="text-white text-center w-full">
+                <p>Aucun joueur disponible pour cette position</p>
+                <p class="text-sm mt-2">Veuillez d'abord ajouter des joueurs pour le poste ${id}</p>
+            </div>`;
+        return;
+    }
+
+    players.forEach(player => {
+        if (player.position === "GK") {
+            cardsJr.innerHTML += cardTemplate(
+                player.name,
+                player.note,
+                player.prise_balle,
+                player.position,
+                player.photo
+            );
+        } else {
+            cardsJr.innerHTML += cardTemplate(
+                player.name,
+                player.rating,
+                player.shooting,
+                player.position,
+                player.photo
+            );
+        }
+    });
 
     let joueurCards = document.querySelectorAll(".joueurCards");
     
     joueurCards.forEach(joueur => {
-        joueur.addEventListener("click" , ()=>{
-            card.innerHTML = "";
-            card.outerHTML = joueur.outerHTML;
-            console.log(id);
+        
+        joueur.addEventListener("click", (e) => {
+            if (!e.target.closest('.delete-player')) {
+                card.innerHTML = joueur.innerHTML;
+                
+                const deleteBtn = card.querySelector('.delete-player');
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+
+                        card.innerHTML = `
+                            <p>${id}</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                                width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                                xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                                d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                                clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                                fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                                opacity="1" data-original="#ffffff" class=""></path></g></svg>
+                        `;
+
+                        card.classList.remove("selected-player");
+                    });
+                }
+                
+                card.classList.add("selected-player");
+                modaPlayers.style.display = "none";
+            }
         });
     });
-
-    console.log("all cards : " , joueurCards);
-
 }
 
-
-closeJr.addEventListener("click" , () => {
+closeJr.addEventListener("click", () => {
     modaPlayers.style.display = "none";
-})
+});
+
+modaPlayers.addEventListener("click", (e) => {
+    if (e.target === modaPlayers) {
+        modaPlayers.style.display = "none";
+    }
+});
