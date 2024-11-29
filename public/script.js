@@ -247,7 +247,7 @@ function savePlayer() {
         if(position === "LB" || position === "CB" || position === "RB"){
             Defeseurs.push(player);
             console.log(Defeseurs);
-        }else if(position === "CM"){
+        }else if(position === "LCM" || position === "CAM" || position === "CDM" || position === "RCM"){
             Centraux.push(player);
             console.log(Centraux);
         }else if(position === "LW" || position === "RW" || position === "ST"){
@@ -258,8 +258,6 @@ function savePlayer() {
     }
 
     console.log("All players : ",  allPlayers);
-
-
 
     document.getElementById('playerForm').reset();
     
@@ -290,7 +288,7 @@ function cardTemplate(name , rating , shooting , position , photo){
                     <h3 class="font-semibold text-[10px]">${position}</h3>
 
                     <div class="delete-player absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
-                    <div class="absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
+                    <div class="modifie-player absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
                 </div>`
 
     return card;
@@ -316,7 +314,7 @@ function selectedCard(card, id) {
     
     if (id === "LW" || id === "ST" || id === "RW") {
         players = Attaquant.filter(player => player.position === id);
-    } else if (id === "CAM" || id === "CM" || id === "CDM") {
+    } else if (id === "LCM" || id === "CAM" || id === "CDM" || id === "RCM") {
         players = Centraux.filter(player => player.position === id);
     } else if (id === "LB" || id === "CB" || id === "CB-2" || id === "RB") {
         players = Defeseurs.filter(player => player.position === id);
@@ -362,12 +360,13 @@ function selectedCard(card, id) {
                 card.innerHTML = joueur.innerHTML;
                 
                 const deleteBtn = card.querySelector('.delete-player');
+                //const modifiePlayer = card.querySelector('.modifie-player');
+
                 if (deleteBtn) {
                     deleteBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
 
                         card.innerHTML = `
-                            <p>${id}</p>
                             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                 width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
                                 xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
@@ -392,8 +391,79 @@ closeJr.addEventListener("click", () => {
     modaPlayers.style.display = "none";
 });
 
+closeJ.addEventListener("click", () => {
+    modalCards.style.display = "none";
+});
+
 modaPlayers.addEventListener("click", (e) => {
     if (e.target === modaPlayers) {
         modaPlayers.style.display = "none";
     }
 });
+
+modalCards.addEventListener("click", (e) => {
+    if (e.target === modalCards) {
+        modalCards.style.display = "none";
+    }
+});
+
+function displayAllPlayers() {
+    cards.innerHTML = "";
+    allPlayers.forEach(card => {
+        if (card.position === "GK") {
+            cards.innerHTML += cardTemplate(card.name, card.note, card.prise_balle, card.position, card.photo);
+        } else {
+            cards.innerHTML += cardTemplate(card.name, card.rating, card.shooting, card.position, card.photo);
+        }
+    });
+
+    document.querySelectorAll('.joueurCards').forEach(joueur => {
+        const deleteBtn = joueur.querySelector('.delete-player');
+        const playerName = joueur.querySelector('h1 span:nth-child(2)').textContent;
+        
+        deleteBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (confirm(`Êtes-vous sûr de vouloir supprimer ${playerName} ?`)) {
+                deletePlayer(joueur, playerName);
+            }
+        });
+    });
+}
+
+
+displayPlayers.addEventListener("click", () => {
+    if (allPlayers.length == 0) {
+        alert("Aucun Joueur à afficher");
+    } else {
+        displayAllPlayers();
+        modalCards.style.display = "flex";
+    }
+});
+
+
+// Change La formation ---------------------------------------------------- 
+
+let formation1 = document.getElementById("4-3-3");
+let formation2 = document.getElementById("4-4-2");
+let RW = document.getElementById("RW");
+let RCM = document.getElementById("RCM");
+
+formation1.addEventListener("click" , ()=>{
+
+    RCM.style.display = "none";
+    RW.style.display = "flex";
+    
+    dropdownMenu.classList.add('hidden');
+    dropdownMenu.classList.remove('block');
+    console.log("433");
+})
+
+formation2.addEventListener("click" , ()=>{
+
+    RCM.style.display = "flex";
+    RW.style.display = "none";
+
+    dropdownMenu.classList.add('hidden');
+    dropdownMenu.classList.remove('block');
+    console.log("433");
+})

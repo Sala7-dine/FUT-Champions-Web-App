@@ -47,8 +47,8 @@
             </button>
       
             <ul id="dropdownMenu" class='absolute hidden shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto'>
-              <li class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-3-3</li>
-              <li class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-4-2</li>
+              <li id="4-3-3" class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-3-3</li>
+              <li id="4-4-2" class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-4-2</li>
             </ul>
 
           </div>
@@ -101,7 +101,7 @@
 
             <div class="flex justify-evenly w-8/12 m-auto max-md:w-auto max-md:m-0">
 
-                <div id="CAM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                <div id="LCM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
                  
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
                         width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
@@ -114,7 +114,7 @@
 
                 </div>
 
-                <div id="CM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                <div id="CAM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
                  
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
                         width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
@@ -137,6 +137,18 @@
                         fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
                         opacity="1" data-original="#ffffff" class=""></path></g></svg>
 
+
+                </div>
+
+                <div id="RCM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover hidden flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
+                  
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                        xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                        d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                        clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                        fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                        opacity="1" data-original="#ffffff" class=""></path></g></svg>
 
                 </div>
 
@@ -362,7 +374,10 @@
                                 <option value="LB">(LB)</option>
                                 <option value="CB">(CB)</option>
                                 <option value="RB">(RB)</option>
-                                <option value="CM">(CM)</option>
+                                <option value="LCM">(LCM)</option>
+                                <option value="RCM">(RCM)</option>
+                                <option value="CDM">(CDM)</option>
+                                <option value="CAM">(CAM)</option>
                                 <option value="LW">(LW)</option>
                                 <option value="RW">(RW)</option>
                                 <option value="ST">(ST)</option>
