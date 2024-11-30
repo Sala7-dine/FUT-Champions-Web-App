@@ -15,10 +15,10 @@ function handleClick() {
 
 dropdownToggle.addEventListener('click', handleClick);
 
-const Gardiens = [];
-const Defeseurs = [];
-const Attaquant = [];
-const Centraux = [];
+let Gardiens = [];
+let Defeseurs = [];
+let Attaquant = [];
+let Centraux = [];
 
 let allPlayers = [];
 
@@ -172,12 +172,13 @@ position.addEventListener("change" , (e)=> {
 });
 
 
+let currentPlayer = 0; 
+
 function savePlayer() {
 
     // if (!validateForm(name , nationality , position , club , rating , pace , shooting , passing , defending)) {
     //     return;
     // }
-
 
     let name = document.getElementById('name').value;
     let nationality = document.getElementById('nationality').value;
@@ -202,6 +203,7 @@ function savePlayer() {
         positionnement = document.getElementById('positionnement').value;
 
         player = {
+            id : currentPlayer,
             name: name,
             nationality: nationality,
             position: position,
@@ -218,6 +220,7 @@ function savePlayer() {
 
         Gardiens.push(player);
         allPlayers.push(player);
+        currentPlayer++;
         console.log(Gardiens);
 
     }else{
@@ -228,7 +231,7 @@ function savePlayer() {
         defending = document.getElementById('defending').value;
 
         player = {
-
+            id : currentPlayer,
             name: name,
             nationality: nationality,
             position: position,
@@ -243,6 +246,7 @@ function savePlayer() {
         };
 
         allPlayers.push(player);
+        console.log(position);
 
         if(position === "LB" || position === "CB" || position === "RB"){
             Defeseurs.push(player);
@@ -254,12 +258,86 @@ function savePlayer() {
             Attaquant.push(player); 
             console.log(Attaquant);
         }
+        currentPlayer++;
 
     }
 
     console.log("All players : ",  allPlayers);
 
     document.getElementById('playerForm').reset();
+
+    Modal.style.display = "none";
+    
+}
+
+
+// Modifie Player ----------------------------------------------------------------------------------------- 
+
+function modifiePlayer(position){
+
+    let name = document.getElementById('namem').value;
+    let nationality = document.getElementById('nationalitym').value;
+    let club = document.getElementById('clubm').value;
+    let photo = document.getElementById('photom').value;
+
+    let rating , pace , shooting , passing  , defending;
+
+    let note , plonge , prise_balle , degagement , reflexe , vitesse , positionnement;
+
+    let player;
+
+    if(position === "GK"){
+
+        note = document.getElementById('notem').value;
+        plonge = document.getElementById('plongem').value
+        prise_balle = document.getElementById('prise_ballem').value;
+        degagement = document.getElementById('degagementm').value;
+        reflexe = document.getElementById('reflexem').value;
+        vitesse = document.getElementById('vitessem').value;
+        positionnement = document.getElementById('positionnementm').value;
+
+        player = {
+            id : currentPlayer,
+            name: name,
+            nationality: nationality,
+            position: position,
+            club: club,
+            photo: photo,
+            note : note,
+            plonge : plonge , 
+            prise_balle : prise_balle ,
+            degagement : degagement ,
+            reflexe : reflexe ,
+            vitesse : vitesse ,
+            positionnement
+        };
+
+        console.log(player);
+
+    }else{
+        rating = document.getElementById('ratingm').value;
+        pace = document.getElementById('pacem').value;
+        shooting = document.getElementById('shootingm').value;
+        passing = document.getElementById('passingm').value;
+        defending = document.getElementById('defendingm').value;
+
+        player = {
+            id : currentPlayer,
+            name: name,
+            nationality: nationality,
+            position: position,
+            club: club,
+            photo: photo,
+            rating: rating,
+            pace: pace,
+            shooting: shooting,
+            passing: passing,
+            defending: defending
+                
+        };
+
+       console.log(player)
+    }
     
 }
 
@@ -279,13 +357,103 @@ close.addEventListener("click" ,()=> {
 
 // Afficher tout les joueur ----------------------------------------------
 
-function cardTemplate(name , rating , shooting , position , photo){
+function cardTemplate(id , name , rating , shooting , defending , pace , passing , position , photo){
 
 
-    let card = `<div class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
-                    <img class="w-24 mt-1" src="${photo}" alt="">
-                    <h1 class="font-semibold text-sm px-5 w-full flex justify-between">    <span class="text-[10px]">${rating}</span>     <span>${name}</span>  <span class="text-[10px]">${shooting}</span>     </h1>
-                    <h3 class="font-semibold text-[10px]">${position}</h3>
+    let card = `<div id="${id}" class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
+                    <img class="w-24 h-[90px] mt-1 mb-1" src="${photo}" alt="">
+                    
+                    <div class="absolute top-10 left-5">
+                        <h1 class="text-[10px] text-center font-semibold">${position}</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" 
+                        x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" 
+                        class=""><g><path d="M0 85.3v341.4h512V85.3z" fill="#d80027" data-original="#d80027"></path><path 
+                            d="M352 226.5h-73.3L256 156.7l-22.7 69.7H160l59.3 43.1-22.7 69.7 59.3-43.1 59.3 43.1-22.7-69.7 
+                            59.5-43zm-116.1 37.7 7.7-23.6h24.8l7.7 23.6-20.1 14.6-20.1-14.6zm27.9-37.7h-15.6l7.8-24 7.8 
+                            24zm24.3 29-4.8-14.9h25.3l-20.5 14.9zm-59.4-14.9-4.8 14.9-20.4-14.9h25.2zm-5.2 61.8 7.8-24 12.6 9.2-20.4 
+                            14.8zm44.5-14.9 12.6-9.2 7.8 24-20.4-14.8z" fill="#6da544" data-original="#6da544"></path></g></svg>
+                        
+                    </div>
+
+                    <h1 class="text-[10px] font-bold -mb-2 -mt-1">${name}</h1>
+                    <div class="flex gap-1 text-[9px] font-bold mt-2">
+
+                        <div>
+                            <h1>RA</h1>
+                            <h1>${rating}</h1>
+                        </div>
+                        <div>
+                            <h1>SH</h1>
+                            <h1>${shooting}</h1>
+                        </div>
+                        <div>
+                            <h1>PS</h1>
+                            <h1>${passing}</h1>
+                        </div>
+                        <div>
+                            <h1>PC</h1>
+                            <h1>${pace}</h1>
+                        </div>
+                        <div>
+                            <h1>DF</h1>
+                            <h1>${defending}</h1>
+                        </div>
+                        
+
+                    </div>
+
+                    <div class="delete-player absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
+                    <div class="modifie-player absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
+                </div>`
+
+    return card;
+
+}
+
+
+function cardTemplateG(id  , name , note , prise_balle , plonge , vitesse , degagement  , position , photo){
+
+    let card = `<div id="${id}" class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
+                    <img class="w-24 h-[90px] mt-1 mb-1" src="${photo}" alt="">
+                    
+                    <div class="absolute top-10 left-5">
+                        <h1 class="text-[10px] text-center font-semibold">${position}</h1>
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" 
+                        x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" 
+                        class=""><g><path d="M0 85.3v341.4h512V85.3z" fill="#d80027" data-original="#d80027"></path><path 
+                            d="M352 226.5h-73.3L256 156.7l-22.7 69.7H160l59.3 43.1-22.7 69.7 59.3-43.1 59.3 43.1-22.7-69.7 
+                            59.5-43zm-116.1 37.7 7.7-23.6h24.8l7.7 23.6-20.1 14.6-20.1-14.6zm27.9-37.7h-15.6l7.8-24 7.8 
+                            24zm24.3 29-4.8-14.9h25.3l-20.5 14.9zm-59.4-14.9-4.8 14.9-20.4-14.9h25.2zm-5.2 61.8 7.8-24 12.6 9.2-20.4 
+                            14.8zm44.5-14.9 12.6-9.2 7.8 24-20.4-14.8z" fill="#6da544" data-original="#6da544"></path></g></svg>
+                        
+                    </div>
+
+                    <h1 class="text-[10px] font-bold -mb-2 -mt-1">${name}</h1>
+                    <div class="flex gap-1 text-[9px] font-bold mt-2">
+
+                        <div>
+                            <h1>RA</h1>
+                            <h1>${note}</h1>
+                        </div>
+                        <div>
+                            <h1>PR</h1>
+                            <h1>${prise_balle}</h1>
+                        </div>
+                        <div>
+                            <h1>PL</h1>
+                            <h1>${plonge}</h1>
+                        </div>
+                        <div>
+                            <h1>DG</h1>
+                            <h1>${degagement}</h1>
+                        </div>
+                        <div>
+                            <h1>VT</h1>
+                            <h1>${vitesse}</h1>
+                        </div>
+                        
+
+                    </div>
 
                     <div class="delete-player absolute w-4 h-4 top-7 left-[104px] bg-red-500 rounded-full flex justify-center items-center"><i class="fa fa-close text-white cursor-pointer" style="font-size:10px"></i></div>
                     <div class="modifie-player absolute w-4 h-4 top-7 left-[8px] bg-blue-500 rounded-full flex justify-center items-center"><i class="material-icons text-white cursor-pointer" style="font-size:10px">edit</i></div>
@@ -305,6 +473,8 @@ let closeJ = document.getElementById("closeJ");
 let modaPlayers = document.getElementById('modaPlayers');
 let cardsJr = document.getElementById('cardsJr');
 let closeJr = document.getElementById("closeJr");
+let Modalm = document.getElementById("Modalm");
+
 
 function selectedCard(card, id) {
     modaPlayers.style.display = "flex";
@@ -333,34 +503,36 @@ function selectedCard(card, id) {
 
     players.forEach(player => {
         if (player.position === "GK") {
-            cardsJr.innerHTML += cardTemplate(
+            cardsJr.innerHTML += cardTemplateG(
+                player.id,
                 player.name,
                 player.note,
                 player.prise_balle,
+                player.plonge,
+                player.vitesse,
+                player.degagement,
                 player.position,
                 player.photo
             );
         } else {
             cardsJr.innerHTML += cardTemplate(
-                player.name,
-                player.rating,
-                player.shooting,
-                player.position,
-                player.photo
+                player.id , player.name, player.rating , player.shooting , player.defending , player.pace , player.passing , player.position , player.photo
             );
         }
     });
 
     let joueurCards = document.querySelectorAll(".joueurCards");
     
-    joueurCards.forEach(joueur => {
+    joueurCards.forEach((joueur) => {
         
         joueur.addEventListener("click", (e) => {
-            if (!e.target.closest('.delete-player')) {
+           if (!e.target.closest('.delete-player')) {
+
                 card.innerHTML = joueur.innerHTML;
+                joueur.remove(); 
                 
                 const deleteBtn = card.querySelector('.delete-player');
-                //const modifiePlayer = card.querySelector('.modifie-player');
+                const modifiePlayer = card.querySelector('.modifie-player');
 
                 if (deleteBtn) {
                     deleteBtn.addEventListener('click', (e) => {
@@ -380,8 +552,31 @@ function selectedCard(card, id) {
                     });
                 }
                 
+                if(modifiePlayer){
+                    modifiePlayer.addEventListener("click" , (e)=>{
+                        e.stopPropagation();
+
+                        const champm = document.getElementById("champm");
+                        let je = joueur.querySelector("#position");
+                        let positionmm = document.getElementById("positionmm");  
+                        positionmm.style.display = "none";
+
+                        console.log(je)
+
+                        if(je.textContent === "GK"){
+                            champm.innerHTML = GardienTemplate();
+                        }else{
+                            champm.innerHTML = JoueurTemplate(); 
+                        }
+
+
+                        Modalm.style.display = "flex";
+                    })
+                }
+
+
                 card.classList.add("selected-player");
-                modaPlayers.style.display = "none";
+                modaPlayers.style.display = "none"
             }
         });
     });
@@ -407,11 +602,21 @@ modalCards.addEventListener("click", (e) => {
     }
 });
 
+closem.addEventListener("click" , () => {
+    Modalm.style.display = "none";
+});
+
+Modalm.addEventListener("click" , (e)=>{
+    if(e.target === Modalm){
+        Modalm.style.display = "none";
+    }
+})
+
 function displayAllPlayers() {
     cards.innerHTML = "";
     allPlayers.forEach(card => {
         if (card.position === "GK") {
-            cards.innerHTML += cardTemplate(card.name, card.note, card.prise_balle, card.position, card.photo);
+            cards.innerHTML += cardTemplateG(card.name, card.note, card.prise_balle, card.position, card.photo);
         } else {
             cards.innerHTML += cardTemplate(card.name, card.rating, card.shooting, card.position, card.photo);
         }

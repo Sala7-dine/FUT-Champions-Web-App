@@ -11,53 +11,17 @@
 
 </head>
 
-<body class="bg-[url('../assets/slide4.jpg')] bg-cover bg-no-repeat min-h-screen overflow-hidden max-lg:overflow-auto">
+<body class="bg-[url('../assets/slide4.jpg')] bg-cover bg-no-repeat min-h-screen overflow-hidden max-lg:overflow-y-auto">
 
-    <section class="bg-green-950 bg-opacity-65 max-w-full min-h-screen flex justify-center max:lg:items-center max-lg:flex-col gap-8">
+    <section class="bg-green-950 bg-opacity-65 max-w-full min-h-screen flex justify-between max:lg:items-center max-lg:flex-col-reverse gap-8">
          
-        <div class="flex flex-col items-center gap-4">
+       
 
-            <h1 class="bg-gradient-to-r text-[50px] text-center fcont-extrabold from-gray-700 via-gray-200 to-gray-100 italic inline-block text-transparent bg-clip-text">Ultimate Team</h1>
-
-            <button type="button" id="displayPlayers"
-                class="px-5 py-2.5 w-44 flex items-center justify-center rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600">
-                Players
-                <i class="fa fa-user-circle ml-2 mt-1"></i>
-            </button>
-
-            <button type="button" id="add"
-                class="px-5 py-2.5 w-44 flex items-center justify-center rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600">
-                Add Player
-                <i class="fa fa-plus-circle ml-2 mt-1" style="font-size: 16px;"></i>
-               
-          </button>
-
-          <div class="relative font-[sans-serif] w-44">
-
-            <button type="button" id="dropdownToggle"
-
-              class="px-5 py-2.5 rounded text-white w-full text-sm font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600">
-              Formation
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 fill-white inline ml-3" viewBox="0 0 24 24">
-                <path fill-rule="evenodd"
-                  d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
-                  clip-rule="evenodd" data-original="#000000" />
-              </svg>
-
-            </button>
-      
-            <ul id="dropdownMenu" class='absolute hidden shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto'>
-              <li id="4-3-3" class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-3-3</li>
-              <li id="4-4-2" class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-4-2</li>
-            </ul>
-
-          </div>
-
-        </div>
-
-        <div class="flex flex-col justify-center items-center w-3/6 bg-[url('../assets/stadium.webp')] bg-top max-md:w-auto">
+        <div class="flex flex-col justify-center items-center w-3/6 bg-[url('../assets/stadium.webp')] bg-top max-lg:w-auto">
 
             <div class="flex justify-evenly">
+
+             
 
                 <div id="LW" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
         
@@ -72,7 +36,6 @@
                 </div>
 
                 <div id="ST" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
-                   
                    
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
                         width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
@@ -99,7 +62,7 @@
 
             </div>
 
-            <div class="flex justify-evenly w-8/12 m-auto max-md:w-auto max-md:m-0">
+            <div class="flex justify-evenly w-8/12 max-lg:w-full m-auto max-md:w-auto max-md:m-0">
 
                 <div id="LCM" onclick="selectedCard(this , this.id)" class="relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center transition hover:scale-110 hover:duration-500 hover:ease-in-out">
                  
@@ -235,7 +198,46 @@
 
         </div>
 
-        <div class="flex justify-center items-center">
+        <div class="flex flex-col items-center m-auto gap-4">
+
+            <h1 class="bg-gradient-to-r text-[50px] text-center fcont-extrabold from-gray-700 via-gray-200 to-gray-100 italic inline-block text-transparent bg-clip-text">Ultimate Team</h1>
+
+            <button type="button" id="displayPlayers"
+                class="px-5 py-2.5 w-44 flex items-center justify-center rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600">
+                Players
+                <i class="fa fa-user-circle ml-2 mt-1"></i>
+            </button>
+
+            <button type="button" id="add"
+                class="px-5 py-2.5 w-44 flex items-center justify-center rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600">
+                Add Player
+                <i class="fa fa-plus-circle ml-2 mt-1" style="font-size: 16px;"></i>
+               
+          </button>
+
+          <div class="relative font-[sans-serif] w-44">
+
+            <button type="button" id="dropdownToggle"
+
+              class="px-5 py-2.5 rounded text-white w-full text-sm font-semibold border-none outline-none bg-green-600 hover:bg-green-700 active:bg-green-600">
+              Formation
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3 fill-white inline ml-3" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                  d="M11.99997 18.1669a2.38 2.38 0 0 1-1.68266-.69733l-9.52-9.52a2.38 2.38 0 1 1 3.36532-3.36532l7.83734 7.83734 7.83734-7.83734a2.38 2.38 0 1 1 3.36532 3.36532l-9.52 9.52a2.38 2.38 0 0 1-1.68266.69734z"
+                  clip-rule="evenodd" data-original="#000000" />
+              </svg>
+
+            </button>
+      
+            <ul id="dropdownMenu" class='absolute hidden shadow-lg bg-white py-2 z-[1000] min-w-full w-max rounded max-h-96 overflow-auto'>
+              <li id="4-3-3" class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-3-3</li>
+              <li id="4-4-2" class='py-2.5 px-5 hover:bg-green-50 text-black text-sm cursor-pointer'>4-4-2</li>
+            </ul>
+
+          </div>
+
+        </div>
+        <!-- <div class="flex justify-center items-center">
 
             <div class="w-80 h-[25rem] mr-12 flex flex-col justify-center items-center">
 
@@ -255,7 +257,7 @@
             </div>
 
 
-        </div>
+        </div> -->
 
 
         <!-- Modal Sp Joueur -->
@@ -318,8 +320,6 @@
 
         <div id="Modal"
             class="fixed inset-0 p-4 hidden flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
-
-
 
             <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-8 relative">
                 <div class="flex items-center py-4">
@@ -402,6 +402,94 @@
 
 
         </div> 
+
+        
+        <div id="Modalm"
+            class="fixed inset-0 p-4 hidden flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
+
+            <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-8 relative">
+                <div class="flex items-center py-4">
+                    <h3 class="text-green-600 text-xl font-bold flex-1">Modifier Le Joueur</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" id="closem" class="w-3 ml-2 cursor-pointer shrink-0 fill-gray-400 hover:fill-red-500"
+                        viewBox="0 0 320.591 320.591">
+                        <path
+                            d="M30.391 318.583a30.37 30.37 0 0 1-21.56-7.288c-11.774-11.844-11.774-30.973 0-42.817L266.643 10.665c12.246-11.459 31.462-10.822 42.921 1.424 10.362 11.074 10.966 28.095 1.414 39.875L51.647 311.295a30.366 30.366 0 0 1-21.256 7.288z"
+                            data-original="#000000"></path>
+                        <path
+                            d="M287.9 318.583a30.37 30.37 0 0 1-21.257-8.806L8.83 51.963C-2.078 39.225-.595 20.055 12.143 9.146c11.369-9.736 28.136-9.736 39.504 0l259.331 257.813c12.243 11.462 12.876 30.679 1.414 42.922-.456.487-.927.958-1.414 1.414a30.368 30.368 0 0 1-23.078 7.288z"
+                            data-original="#000000"></path>
+                    </svg>
+                </div>
+
+                <form class="flex flex-col gap-4" id="playerFormm">
+
+                    <div>  
+                        <label class="text-gray-800 text-sm mb-2 block">Nom</label>
+                        <input id="namem" type="text" placeholder="Saisissez le nom du joueur..."
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                    </div>
+            
+                    <div>
+                        <label class="text-gray-800 text-sm mb-2 block">Nationalité</label>
+                        <input id="nationalitym" type="text" placeholder="Saisissez la nationalité du joueur..."
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                    </div>
+            
+                    <div>
+                        <label class="text-gray-800 text-sm mb-2 block">Club</label>
+                        <input id="clubm" type="text" placeholder="Saisissez le club du joueur..."
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                    </div>
+
+                    <div>
+                        <label for="photo" class="text-gray-800 text-sm mb-2 block">Photo</label>
+                        <input id="photom" type="text" placeholder="URL de la photo du joueur..."
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                    </div>
+
+                    <div id="positionmm">
+                        <label class="text-gray-800 text-sm mb-2 block">Position</label>
+                        <div class="relative">
+                            <select
+                                id="positionm"
+                                name="positionm"
+                                class="w-full px-4 py-3 rounded-lg bg-gray-100 text-gray-800 focus:ring-green-600"
+                                required>
+                                <option value="nothing">-- Sélectionner une position --</option>
+                                <option value="GK">(GK)</option>
+                                <option value="LB">(LB)</option>
+                                <option value="CB">(CB)</option>
+                                <option value="RB">(RB)</option>
+                                <option value="LCM">(LCM)</option>
+                                <option value="RCM">(RCM)</option>
+                                <option value="CDM">(CDM)</option>
+                                <option value="CAM">(CAM)</option>
+                                <option value="LW">(LW)</option>
+                                <option value="RW">(RW)</option>
+                                <option value="ST">(ST)</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <div id="champm" class="mb-2">                    
+        
+                        
+
+                    </div>
+
+            
+                    <button type="button" onclick="modifiePlayer()" class="px-4 py-2 bg-green-600 text-white rounded-lg mt-4">
+                        Sauvegarder
+                    </button>
+                </form>
+            
+            </div>
+
+
+
+        </div> 
+
+
     
     </section>
 
