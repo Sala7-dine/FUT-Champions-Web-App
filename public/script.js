@@ -15,70 +15,38 @@ function handleClick() {
 
 dropdownToggle.addEventListener('click', handleClick);
 
-let Gardiens = [];
-let Defeseurs = [];
-let Attaquant = [];
-let Centraux = [];
 
-let allPlayers = [];
+let Gardiens = JSON.parse(localStorage.getItem("Gardiens")) || [];
+let Defeseurs =  JSON.parse(localStorage.getItem("Defeseurs")) || [];
+let Attaquant =  JSON.parse(localStorage.getItem("Attaquant")) || [];
+let Centraux =  JSON.parse(localStorage.getItem("Centraux")) || [];
+
+let allPlayers =  JSON.parse(localStorage.getItem("allPlayers")) || [];
 
 
-// function validateForm(name , nationality , position , club , rating , pace , shooting , passing , defending) {
+let currentPlayer = parseInt(localStorage.getItem("currentPlayer")) || 0; 
 
-//     const errors = [];
-    
-//     if (!name) errors.push("Le champ 'Nom' est obligatoire.");
-//     if (!nationality) errors.push("Le champ 'Nationalité' est obligatoire.");
-//     if (!position) errors.push("Le champ 'Position' est obligatoire.");
-//     if (!club) errors.push("Le champ 'Club' est obligatoire.");
-//     if (!rating || isNaN(rating) || rating < 0 || rating > 100) {
-//         errors.push("Le champ 'Note' doit être un nombre entre 0 et 100.");
-//     }
-    
-//     if (!pace || isNaN(pace) || pace < 0 || pace > 100) {
-//         errors.push("Le champ 'Vitesse' doit être un nombre entre 0 et 100.");
-//     }
-    
-//     if (!shooting || isNaN(shooting) || shooting < 0 || shooting > 100) {
-//         errors.push("Le champ 'Tir' doit être un nombre entre 0 et 100.");
-//     }
-    
-//     if (!passing || isNaN(passing) || passing < 0 || passing > 100) {
-//         errors.push("Le champ 'Passes' doit être un nombre entre 0 et 100.");
-//     }
-
-//     if (!defending || isNaN(defending) || defending < 0 || defending > 100) {
-//         errors.push("Le champ 'Défense' doit être un nombre entre 0 et 100.");
-//     }
-
-//     if (errors.length > 0) {
-//         alert(errors.join('\n'));
-//         return false;
-//     }
-
-//     return true;
-// }
-
+/* inputs Templates */
 function JoueurTemplate()
 
 {
     let div = `<div class="mb-2">
                 <label class="text-gray-800 text-sm mb-2 block">Note</label>
                 <input id="rating" type="number" placeholder="Saisissez la note du joueur..."
-                    class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                    class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
             </div>
             
             <div class="flex gap-4 mb-2">
                 <div>
                     <label class="text-gray-800 text-sm mb-2 block">Vitesse</label>
                     <input id="pace" type="number" placeholder="Saisissez la vitesse du joueur..."
-                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                 </div>
         
                 <div>
                     <label class="text-gray-800 text-sm mb-2 block">Tir</label>
                     <input id="shooting" type="number" placeholder="Saisissez la précision de tir du joueur..."
-                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                 </div>
             </div>
 
@@ -86,13 +54,13 @@ function JoueurTemplate()
                 <div>
                     <label class="text-gray-800 text-sm mb-2 block">Passes</label>
                     <input id="passing" type="number" placeholder="Saisissez la précision des passes du joueur..."
-                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                 </div>
         
                 <div>
                     <label class="text-gray-800 text-sm mb-2 block">Défense</label>
                     <input id="defending" type="number" placeholder="Saisissez la capacité de défense du joueur..."
-                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                        class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                 </div>
             </div>`
 
@@ -108,20 +76,20 @@ function GardienTemplate(){
                 <div class="mb-2">
                     <label class="text-gray-800 text-sm mb-2 block">Note</label>
                     <input id="note" type="number" placeholder="Saisissez la note du joueur..."
-                    class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                    class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                 </div>
 
                 <div class="flex gap-4 mb-2">
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Plongée</label>
                         <input id="plonge" type="number" placeholder="Saisissez la note de plongée..."
-                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                     </div>
                 
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Prise de balle</label>
                         <input id="prise_balle" type="number" placeholder="Saisissez la note de prise de balle..."
-                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                     </div>
                 </div>
 
@@ -129,13 +97,13 @@ function GardienTemplate(){
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Dégagement</label>
                         <input id="degagement" type="number" placeholder="Saisissez la note de dégagement..."
-                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                     </div>
 
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Réflexes</label>
                         <input id="reflexe" type="number" placeholder="Saisissez la note de réflexes..."
-                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                     </div>
                 </div>
 
@@ -143,13 +111,13 @@ function GardienTemplate(){
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Vitesse</label>
                         <input id="vitesse" type="number" placeholder="Saisissez la vitesse du joueur..."
-                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                     </div>
 
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Positionnement</label>
                         <input id="positionnement" type="number" placeholder="Saisissez la note de positionnement..."
-                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm border-none focus:outline-green-600 focus:bg-transparent rounded-lg" />
+                            class="px-4 py-3 bg-gray-100 w-full text-gray-800 text-sm  focus:outline-green-600 focus:bg-transparent rounded-lg" />
                     </div>
                 </div>
                     `
@@ -171,14 +139,91 @@ position.addEventListener("change" , (e)=> {
     }
 });
 
+function valider(text) {
+    if (text.length === 0) {
+      return false; 
+    }
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      if (
+        !(char >= "A" && char <= "Z") &&
+        !(char >= "a" && char <= "z") && 
+        !(char === " ") 
+      ) {
+        return false; 
+      }
+    }
+    return true;
+  }
 
-let currentPlayer = 0; 
+
+function validateInputs() {
+    let isValid = true;
+    const inputs = [
+        document.getElementById('name'),
+        document.getElementById('nationality'),
+        document.getElementById('club'),
+        document.getElementById('photo'),
+        document.getElementById('position')
+    ];
+
+    inputs.forEach(input => {
+        input.style.border = 'none';
+    });
+
+    inputs.forEach(input => {
+        if (!valider(input.value)) {
+            input.style.border = '1px solid red';
+            isValid = false;
+        }
+    });
+
+    const position = document.getElementById('position').value;
+    if (position === "GK") {
+        const gkInputs = [
+            document.getElementById('note'),
+            document.getElementById('plonge'),
+            document.getElementById('prise_balle'),
+            document.getElementById('degagement'),
+            document.getElementById('reflexe'),
+            document.getElementById('vitesse'),
+            document.getElementById('positionnement')
+        ];
+
+        gkInputs.forEach(input => {
+            if (!input.value) {
+                input.style.border = '1px solid red';
+                isValid = false;
+            }
+        });
+    } else if (position !== "nothing") {
+        const playerInputs = [
+            document.getElementById('rating'),
+            document.getElementById('pace'),
+            document.getElementById('shooting'),
+            document.getElementById('passing'),
+            document.getElementById('defending')
+        ];
+
+        playerInputs.forEach(input => {
+            if (!input.value) {
+                input.style.border = '1px solid red';
+                isValid = false;
+            }
+        });
+    }
+
+    return isValid;
+}
+
+
+
 
 function savePlayer() {
-
-    // if (!validateForm(name , nationality , position , club , rating , pace , shooting , passing , defending)) {
-    //     return;
-    // }
+    
+    if (!validateInputs()) {
+        return;
+    }
 
     let name = document.getElementById('name').value;
     let nationality = document.getElementById('nationality').value;
@@ -221,7 +266,11 @@ function savePlayer() {
         Gardiens.push(player);
         allPlayers.push(player);
         currentPlayer++;
-        console.log(Gardiens);
+
+        localStorage.Gardiens = JSON.stringify(Gardiens);
+        localStorage.currentPlayer = currentPlayer;
+
+
 
     }else{
         rating = document.getElementById('rating').value;
@@ -246,19 +295,20 @@ function savePlayer() {
         };
 
         allPlayers.push(player);
-        console.log(position);
+        localStorage.Gardiens =  JSON.stringify(Gardiens);
 
         if(position === "LB" || position === "CB" || position === "RB"){
             Defeseurs.push(player);
-            console.log(Defeseurs);
+            localStorage.Defeseurs =  JSON.stringify(Defeseurs);
         }else if(position === "LCM" || position === "CAM" || position === "CDM" || position === "RCM"){
             Centraux.push(player);
-            console.log(Centraux);
+            localStorage.Centraux =  JSON.stringify(Centraux);
         }else if(position === "LW" || position === "RW" || position === "ST"){
             Attaquant.push(player); 
-            console.log(Attaquant);
+            localStorage.Attaquant =  JSON.stringify(Attaquant);
         }
         currentPlayer++;
+        localStorage.currentPlayer = currentPlayer;
 
     }
 
@@ -270,15 +320,40 @@ function savePlayer() {
     
 }
 
+// Ajouter des écouteurs d'événements pour enlever la bordure rouge lors de la saisie
+function addInputListeners() {
+    const allInputs = document.querySelectorAll('input, select');
+    allInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (input.value) {
+                input.style.border = 'none';
+            }
+        });
+    });
+}
+
+// Ajouter les écouteurs lors du changement de position
+position.addEventListener("change", (e) => {
+    if (e.target.value === "GK") {
+        champ.innerHTML = GardienTemplate();
+    } else {
+        champ.innerHTML = JoueurTemplate();
+    }
+    addInputListeners();
+});
+
+
 
 // Modifie Player ----------------------------------------------------------------------------------------- 
 
-function modifiePlayer(position){
+function ModifiePlayers(position1 , id){
 
+    console.log(id)
     let name = document.getElementById('namem').value;
     let nationality = document.getElementById('nationalitym').value;
     let club = document.getElementById('clubm').value;
     let photo = document.getElementById('photom').value;
+    let position = position1;
 
     let rating , pace , shooting , passing  , defending;
 
@@ -288,16 +363,16 @@ function modifiePlayer(position){
 
     if(position === "GK"){
 
-        note = document.getElementById('notem').value;
-        plonge = document.getElementById('plongem').value
-        prise_balle = document.getElementById('prise_ballem').value;
-        degagement = document.getElementById('degagementm').value;
-        reflexe = document.getElementById('reflexem').value;
-        vitesse = document.getElementById('vitessem').value;
-        positionnement = document.getElementById('positionnementm').value;
+        note = document.getElementById('note').value;
+        plonge = document.getElementById('plonge').value
+        prise_balle = document.getElementById('prise_balle').value;
+        degagement = document.getElementById('degagement').value;
+        reflexe = document.getElementById('reflexe').value;
+        vitesse = document.getElementById('vitesse').value;
+        positionnement = document.getElementById('positionnement').value;
 
         player = {
-            id : currentPlayer,
+            id : id,
             name: name,
             nationality: nationality,
             position: position,
@@ -309,20 +384,20 @@ function modifiePlayer(position){
             degagement : degagement ,
             reflexe : reflexe ,
             vitesse : vitesse ,
-            positionnement
+            positionnement : positionnement
         };
 
-        console.log(player);
+        return player;
 
     }else{
-        rating = document.getElementById('ratingm').value;
-        pace = document.getElementById('pacem').value;
-        shooting = document.getElementById('shootingm').value;
-        passing = document.getElementById('passingm').value;
-        defending = document.getElementById('defendingm').value;
+        rating = document.getElementById('rating').value;
+        pace = document.getElementById('pace').value;
+        shooting = document.getElementById('shooting').value;
+        passing = document.getElementById('passing').value;
+        defending = document.getElementById('defending').value;
 
         player = {
-            id : currentPlayer,
+            id : id,
             name: name,
             nationality: nationality,
             position: position,
@@ -336,7 +411,7 @@ function modifiePlayer(position){
                 
         };
 
-       console.log(player)
+       return player;
     }
     
 }
@@ -359,12 +434,11 @@ close.addEventListener("click" ,()=> {
 
 function cardTemplate(id , name , rating , shooting , defending , pace , passing , position , photo){
 
-
-    let card = `<div id="${id}" class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
+    let card = `<div id="${id}" class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center" data-player-id="${id}">
                     <img class="w-24 h-[90px] mt-1 mb-1" src="${photo}" alt="">
                     
                     <div class="absolute top-10 left-5">
-                        <h1 class="text-[10px] text-center font-semibold">${position}</h1>
+                        <h1 id="pos" class="text-[10px] text-center font-semibold">${position}</h1>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" 
                         x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" 
                         class=""><g><path d="M0 85.3v341.4h512V85.3z" fill="#d80027" data-original="#d80027"></path><path 
@@ -410,14 +484,13 @@ function cardTemplate(id , name , rating , shooting , defending , pace , passing
 
 }
 
-
 function cardTemplateG(id  , name , note , prise_balle , plonge , vitesse , degagement  , position , photo){
 
-    let card = `<div id="${id}" class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center">
+    let card = `<div id="${id}" class="joueurCards relative w-32 h-44 bg-[url('../assets/badge_gold.webp')] bg-cover flex flex-col justify-center items-center" data-player-id="${id}">
                     <img class="w-24 h-[90px] mt-1 mb-1" src="${photo}" alt="">
                     
                     <div class="absolute top-10 left-5">
-                        <h1 class="text-[10px] text-center font-semibold">${position}</h1>
+                        <h1 id="pos" class="text-[10px] text-center font-semibold">${position}</h1>
                         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" 
                         x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" 
                         class=""><g><path d="M0 85.3v341.4h512V85.3z" fill="#d80027" data-original="#d80027"></path><path 
@@ -526,10 +599,11 @@ function selectedCard(card, id) {
     joueurCards.forEach((joueur) => {
         
         joueur.addEventListener("click", (e) => {
-           if (!e.target.closest('.delete-player')) {
-
-                card.innerHTML = joueur.innerHTML;
-                joueur.remove(); 
+         
+                const joueurHTML = joueur.outerHTML;
+                // Ajouter l'attribut data-player-id à la carte sur le terrain
+                card.innerHTML = joueurHTML;
+                card.querySelector('.joueurCards').setAttribute('data-player-id', joueur.id);
                 
                 const deleteBtn = card.querySelector('.delete-player');
                 const modifiePlayer = card.querySelector('.modifie-player');
@@ -555,32 +629,123 @@ function selectedCard(card, id) {
                 if(modifiePlayer){
                     modifiePlayer.addEventListener("click" , (e)=>{
                         e.stopPropagation();
-
+                        console.log(e.target.parentElement);
+                        
                         const champm = document.getElementById("champm");
-                        let je = joueur.querySelector("#position");
+                        let JoueurId = parseInt(joueur.id); 
+                        let je = joueur.querySelector("#pos");
                         let positionmm = document.getElementById("positionmm");  
                         positionmm.style.display = "none";
 
-                        console.log(je)
 
+                        let arrayJr = allPlayers.filter(jr => jr.id === JoueurId);
+                        let objJr = arrayJr[0];
+                        
+                        // Remplir les champs du formulaire
+                        document.getElementById('namem').value = objJr.name;
+                        document.getElementById('nationalitym').value = objJr.nationality;
+                        document.getElementById('clubm').value = objJr.club;
+                        document.getElementById('photom').value = objJr.photo;
+    
                         if(je.textContent === "GK"){
+
+                            champ.innerHTML = "";
                             champm.innerHTML = GardienTemplate();
-                        }else{
-                            champm.innerHTML = JoueurTemplate(); 
+
+                            document.getElementById('note').value = objJr.note;
+                            document.getElementById('plonge').value = objJr.plonge;
+                            document.getElementById('prise_balle').value = objJr.prise_balle;
+                            document.getElementById('degagement').value = objJr.degagement;
+                            document.getElementById('reflexe').value = objJr.reflexe;
+                            document.getElementById('vitesse').value = objJr.vitesse;
+                            document.getElementById('positionnement').value = objJr.positionnement;
+                        } else {
+
+                            champ.innerHTML = "";
+                            champm.innerHTML = JoueurTemplate();
+
+                            document.getElementById('rating').value = objJr.rating;
+                            document.getElementById('pace').value = objJr.pace;
+                            document.getElementById('shooting').value = objJr.shooting;
+                            document.getElementById('passing').value = objJr.passing;
+                            document.getElementById('defending').value = objJr.defending;
                         }
+                        
+                        Modalm.style.display = "flex"; 
 
+                         // Supprimer l'ancien gestionnaire d'événements s'il existe
+                        const btnModifie = document.getElementById("btnModifie");
+                        const oldBtnModifie = btnModifie.cloneNode(true);
+                        btnModifie.parentNode.replaceChild(oldBtnModifie, btnModifie);
 
-                        Modalm.style.display = "flex";
-                    })
+                        // Ajouter le nouveau gestionnaire d'événements
+                        oldBtnModifie.addEventListener("click", () => {
+                            let modifiedJr = ModifiePlayers(je.textContent, JoueurId);
+                            updatePlayerData(modifiedJr);
+                            Modalm.style.display = "none";
+                        });
+
+                    });
                 }
 
 
                 card.classList.add("selected-player");
                 modaPlayers.style.display = "none"
-            }
         });
     });
 }
+
+
+function updatePlayerData(modifiedJr) {
+    allPlayers = allPlayers.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
+    localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
+
+    // Mettre à jour les tableaux spécifiques
+    if (modifiedJr.position === "GK") {
+        Gardiens = Gardiens.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
+        localStorage.setItem("Gardiens", JSON.stringify(Gardiens));
+    } else if (modifiedJr.position === "LW" || modifiedJr.position === "ST" || modifiedJr.position === "RW") {
+        Attaquant = Attaquant.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
+        localStorage.setItem("Attaquant", JSON.stringify(Attaquant));
+    } else if (modifiedJr.position === "LCM" || modifiedJr.position === "CAM" || modifiedJr.position === "CDM" || modifiedJr.position === "RCM") {
+        Centraux = Centraux.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
+        localStorage.setItem("Centraux", JSON.stringify(Centraux));
+    } else if (modifiedJr.position === "LB" || modifiedJr.position === "CB" || modifiedJr.position === "RB") {
+        Defeseurs = Defeseurs.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
+        localStorage.setItem("Defeseurs", JSON.stringify(Defeseurs));
+    }
+
+    // Mettre à jour la carte sur le terrain
+    const cardOnField = document.querySelector(`[data-player-id="${modifiedJr.id}"]`);
+    if (cardOnField) {
+        if (modifiedJr.position === "GK") {
+            cardOnField.outerHTML = cardTemplateG(
+                modifiedJr.id,
+                modifiedJr.name,
+                modifiedJr.note,
+                modifiedJr.prise_balle,
+                modifiedJr.plonge,
+                modifiedJr.vitesse,
+                modifiedJr.degagement,
+                modifiedJr.position,
+                modifiedJr.photo
+            );
+        } else {
+            cardOnField.outerHTML = cardTemplate(
+                modifiedJr.id,
+                modifiedJr.name,
+                modifiedJr.rating,
+                modifiedJr.shooting,
+                modifiedJr.defending,
+                modifiedJr.pace,
+                modifiedJr.passing,
+                modifiedJr.position,
+                modifiedJr.photo
+            );
+        }
+    }
+}
+
 
 closeJr.addEventListener("click", () => {
     modaPlayers.style.display = "none";
