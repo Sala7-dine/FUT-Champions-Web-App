@@ -163,9 +163,19 @@ function validateInputs() {
         document.getElementById('name'),
         document.getElementById('nationality'),
         document.getElementById('club'),
-        document.getElementById('photo'),
-        document.getElementById('position')
     ];
+
+
+    
+    let img = document.getElementById('photo');
+
+
+    img.style.border = "none";
+
+    if(!img.value){
+        img.style.border = '1px solid red';
+        isValid = false;
+    }
 
     inputs.forEach(input => {
         input.style.border = 'none';
@@ -196,7 +206,7 @@ function validateInputs() {
                 isValid = false;
             }
         });
-    } else if (position !== "nothing") {
+    } else{
         const playerInputs = [
             document.getElementById('rating'),
             document.getElementById('pace'),
@@ -215,7 +225,6 @@ function validateInputs() {
 
     return isValid;
 }
-
 
 
 
@@ -297,7 +306,7 @@ function savePlayer() {
         allPlayers.push(player);
         localStorage.Gardiens =  JSON.stringify(Gardiens);
 
-        if(position === "LB" || position === "CB" || position === "RB"){
+        if(position === "LB" || position === "CB" || position === "CB-2" || position === "RB" ){
             Defeseurs.push(player);
             localStorage.Defeseurs =  JSON.stringify(Defeseurs);
         }else if(position === "LCM" || position === "CAM" || position === "CDM" || position === "RCM"){
@@ -555,16 +564,18 @@ function selectedCard(card, id) {
 
     let players = [];
     
+    // Filtrer les joueurs selon la position
     if (id === "LW" || id === "ST" || id === "RW") {
-        players = Attaquant.filter(player => player.position === id);
-    } else if (id === "LCM" || id === "CAM" || id === "CDM" || id === "RCM") {
-        players = Centraux.filter(player => player.position === id);
+        players = [...Attaquant].filter(player => player.position === id);
+    } else if (id === "LCM" || id === "CAM" || id === "CDM" || id === "RCM" ) {
+        players = [...Centraux].filter(player => player.position === id);
     } else if (id === "LB" || id === "CB" || id === "CB-2" || id === "RB") {
-        players = Defeseurs.filter(player => player.position === id);
+        players = [...Defeseurs].filter(player => player.position === id);
     } else if (id === "GK") {
-        players = Gardiens;
+        players = [...Gardiens];
     }
 
+    // Vérifier s'il y a des joueurs disponibles
     if (players.length === 0) {
         cardsJr.innerHTML = `
             <div class="text-white text-center w-full">
@@ -574,9 +585,11 @@ function selectedCard(card, id) {
         return;
     }
 
+    // Afficher les cartes des joueurs disponibles
     players.forEach(player => {
+        let cardHTML;
         if (player.position === "GK") {
-            cardsJr.innerHTML += cardTemplateG(
+            cardHTML = cardTemplateG(
                 player.id,
                 player.name,
                 player.note,
@@ -588,111 +601,117 @@ function selectedCard(card, id) {
                 player.photo
             );
         } else {
-            cardsJr.innerHTML += cardTemplate(
-                player.id , player.name, player.rating , player.shooting , player.defending , player.pace , player.passing , player.position , player.photo
+            cardHTML = cardTemplate(
+                player.id,
+                player.name,
+                player.rating,
+                player.shooting,
+                player.defending,
+                player.pace,
+                player.passing,
+                player.position,
+                player.photo
             );
         }
-    });
 
-    let joueurCards = document.querySelectorAll(".joueurCards");
-    
-    joueurCards.forEach((joueur) => {
-        
-        joueur.addEventListener("click", (e) => {
-         
-                const joueurHTML = joueur.outerHTML;
-                // Ajouter l'attribut data-player-id à la carte sur le terrain
-                card.innerHTML = joueurHTML;
-                card.querySelector('.joueurCards').setAttribute('data-player-id', joueur.id);
-                
-                const deleteBtn = card.querySelector('.delete-player');
-                const modifiePlayer = card.querySelector('.modifie-player');
+        // Créer un conteneur pour la carte
+        const cardContainer = document.createElement('div');
+        cardContainer.innerHTML = cardHTML;
+        const joueurCard = cardContainer.firstChild;
 
-                if (deleteBtn) {
-                    deleteBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-
-                        card.innerHTML = `
-                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                                width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
-                                xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
-                                d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
-                                clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
-                                fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
-                                opacity="1" data-original="#ffffff" class=""></path></g></svg>
-                        `;
-
-                        card.classList.remove("selected-player");
-                    });
-                }
-                
-                if(modifiePlayer){
-                    modifiePlayer.addEventListener("click" , (e)=>{
-                        e.stopPropagation();
-                        console.log(e.target.parentElement);
-                        
-                        const champm = document.getElementById("champm");
-                        let JoueurId = parseInt(joueur.id); 
-                        let je = joueur.querySelector("#pos");
-                        let positionmm = document.getElementById("positionmm");  
-                        positionmm.style.display = "none";
-
-
-                        let arrayJr = allPlayers.filter(jr => jr.id === JoueurId);
-                        let objJr = arrayJr[0];
-                        
-                        // Remplir les champs du formulaire
-                        document.getElementById('namem').value = objJr.name;
-                        document.getElementById('nationalitym').value = objJr.nationality;
-                        document.getElementById('clubm').value = objJr.club;
-                        document.getElementById('photom').value = objJr.photo;
-    
-                        if(je.textContent === "GK"){
-
-                            champ.innerHTML = "";
-                            champm.innerHTML = GardienTemplate();
-
-                            document.getElementById('note').value = objJr.note;
-                            document.getElementById('plonge').value = objJr.plonge;
-                            document.getElementById('prise_balle').value = objJr.prise_balle;
-                            document.getElementById('degagement').value = objJr.degagement;
-                            document.getElementById('reflexe').value = objJr.reflexe;
-                            document.getElementById('vitesse').value = objJr.vitesse;
-                            document.getElementById('positionnement').value = objJr.positionnement;
-                        } else {
-
-                            champ.innerHTML = "";
-                            champm.innerHTML = JoueurTemplate();
-
-                            document.getElementById('rating').value = objJr.rating;
-                            document.getElementById('pace').value = objJr.pace;
-                            document.getElementById('shooting').value = objJr.shooting;
-                            document.getElementById('passing').value = objJr.passing;
-                            document.getElementById('defending').value = objJr.defending;
-                        }
-                        
-                        Modalm.style.display = "flex"; 
-
-                         // Supprimer l'ancien gestionnaire d'événements s'il existe
-                        const btnModifie = document.getElementById("btnModifie");
-                        const oldBtnModifie = btnModifie.cloneNode(true);
-                        btnModifie.parentNode.replaceChild(oldBtnModifie, btnModifie);
-
-                        // Ajouter le nouveau gestionnaire d'événements
-                        oldBtnModifie.addEventListener("click", () => {
-                            let modifiedJr = ModifiePlayers(je.textContent, JoueurId);
-                            updatePlayerData(modifiedJr);
-                            Modalm.style.display = "none";
-                        });
-
-                    });
-                }
-
-
-                card.classList.add("selected-player");
-                modaPlayers.style.display = "none"
+        // Ajouter l'événement de clic
+        joueurCard.addEventListener("click", () => {
+            const targetCard = card;
+            targetCard.innerHTML = cardHTML;
+            
+            const newCard = targetCard.querySelector('.joueurCards');
+            if (newCard) {
+                setupCardEventListeners(newCard, player.position);
+            }
+            
+            targetCard.classList.add("selected-player");
+            modaPlayers.style.display = "none";
         });
+
+        cardsJr.appendChild(joueurCard);
     });
+}
+
+function setupCardEventListeners(card, position) {
+    const deleteBtn = card.querySelector('.delete-player');
+    const modifiePlayer = card.querySelector('.modifie-player');
+
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            card.parentElement.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    width="40" height="40" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" 
+                    xml:space="preserve" class=""><g><path fill="#4bae4f" fill-rule="evenodd" 
+                    d="M256 0C114.8 0 0 114.8 0 256s114.8 256 256 256 256-114.8 256-256S397.2 0 256 0z" 
+                    clip-rule="evenodd" opacity="1" data-original="#4bae4f" class=""></path><path 
+                    fill="#ffffff" d="M116 279.6v-47.3c0-4.8 3.9-8.8 8.8-8.8h98.9v-98.8c0-4.8 3.9-8.8 8.8-8.8h47.3c4.8 0 8.7 3.9 8.7 8.8v98.9h98.8c4.8 0 8.8 3.9 8.8 8.8v47.3c0 4.8-3.9 8.7-8.8 8.7h-98.9v98.8c0 4.8-3.9 8.8-8.7 8.8h-47.3c-4.8 0-8.8-3.9-8.8-8.8v-98.9h-98.8c-4.9.1-8.8-3.9-8.8-8.7z" 
+                    opacity="1" data-original="#ffffff" class=""></path></g></svg>
+            `;
+            card.parentElement.classList.remove("selected-player");
+        });
+    }
+
+    if (modifiePlayer) {
+        modifiePlayer.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            const champm = document.getElementById("champm");
+            let JoueurId = parseInt(card.id);
+            let positionmm = document.getElementById("positionmm");
+            positionmm.style.display = "none";
+
+            let arrayJr = allPlayers.filter(jr => jr.id === JoueurId);
+            let objJr = arrayJr[0];
+
+            // Remplir les champs du formulaire
+            document.getElementById('namem').value = objJr.name;
+            document.getElementById('nationalitym').value = objJr.nationality;
+            document.getElementById('clubm').value = objJr.club;
+            document.getElementById('photom').value = objJr.photo;
+
+            if (position === "GK") {
+                champ.innerHTML = "";
+                champm.innerHTML = GardienTemplate();
+
+                document.getElementById('note').value = objJr.note;
+                document.getElementById('plonge').value = objJr.plonge;
+                document.getElementById('prise_balle').value = objJr.prise_balle;
+                document.getElementById('degagement').value = objJr.degagement;
+                document.getElementById('reflexe').value = objJr.reflexe;
+                document.getElementById('vitesse').value = objJr.vitesse;
+                document.getElementById('positionnement').value = objJr.positionnement;
+            } else {
+                champ.innerHTML = "";
+                champm.innerHTML = JoueurTemplate();
+
+                document.getElementById('rating').value = objJr.rating;
+                document.getElementById('pace').value = objJr.pace;
+                document.getElementById('shooting').value = objJr.shooting;
+                document.getElementById('passing').value = objJr.passing;
+                document.getElementById('defending').value = objJr.defending;
+            }
+
+            Modalm.style.display = "flex";
+
+            // Supprimer l'ancien gestionnaire d'événements s'il existe
+            const btnModifie = document.getElementById("btnModifie");
+            const oldBtnModifie = btnModifie.cloneNode(true);
+            btnModifie.parentNode.replaceChild(oldBtnModifie, btnModifie);
+
+            // Ajouter le nouveau gestionnaire d'événements
+            oldBtnModifie.addEventListener("click", () => {
+                let modifiedJr = ModifiePlayers(position, JoueurId);
+                updatePlayerData(modifiedJr);
+                Modalm.style.display = "none";
+            });
+        });
+    }
 }
 
 
@@ -710,7 +729,7 @@ function updatePlayerData(modifiedJr) {
     } else if (modifiedJr.position === "LCM" || modifiedJr.position === "CAM" || modifiedJr.position === "CDM" || modifiedJr.position === "RCM") {
         Centraux = Centraux.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
         localStorage.setItem("Centraux", JSON.stringify(Centraux));
-    } else if (modifiedJr.position === "LB" || modifiedJr.position === "CB" || modifiedJr.position === "RB") {
+    } else if (modifiedJr.position === "LB" || modifiedJr.position === "CB" || modifiedJr.position === "CB-2" || modifiedJr.position === "RB") {
         Defeseurs = Defeseurs.map(jr => jr.id === modifiedJr.id ? modifiedJr : jr);
         localStorage.setItem("Defeseurs", JSON.stringify(Defeseurs));
     }
