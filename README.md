@@ -1,3 +1,5 @@
+[![wakatime](https://wakatime.com/badge/user/68eaff2e-4ab0-4a80-abe4-f60e8fff3b0f/project/9b651c80-be34-4732-890e-f0572b936988.svg)](https://wakatime.com/badge/user/68eaff2e-4ab0-4a80-abe4-f60e8fff3b0f/project/9b651c80-be34-4732-890e-f0572b936988)
+
 # ⚽ **FUT Team Builder**  
 
 Bienvenue dans **FUT Team Builder** ! 🎮 Cette application vous permet de créer votre équipe de rêve pour le mode Ultimate Team (FUT) avec une interface intuitive et interactive. Formez, positionnez et optimisez vos joueurs tout en respectant les formations tactiques classiques comme le **4-4-2** ou le **4-3-3**.  
